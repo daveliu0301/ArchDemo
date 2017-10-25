@@ -7,9 +7,11 @@ import com.example.liudong.archdemo.db.GithubTypeConverters
 
 @Entity(primaryKeys = arrayOf("query"))
 @TypeConverters(GithubTypeConverters::class)
-class RepoSearchResult @Ignore constructor(var query: String,
-                                           var repoIds: List<Int>,
-                                           var totalCount: Int,
-                                           var next: Int) {
-    constructor() : this("", mutableListOf(), 0, 0)
+data class RepoSearchResult @Ignore constructor(
+        var query: String? = "",
+        var repoIds: List<Int> = mutableListOf(),
+        var totalCount: Int = 0,
+        var next: Int = 0
+) {
+    constructor() : this("")
 }

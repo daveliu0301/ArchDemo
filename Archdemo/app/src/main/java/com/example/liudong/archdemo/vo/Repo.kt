@@ -12,23 +12,23 @@ import com.google.gson.annotations.SerializedName
  */
 @Entity(indices = arrayOf(Index("id", "owner_login")),
         primaryKeys = arrayOf("name", "owner_login"))
-class Repo @Ignore constructor(var id: Int,
-                               @SerializedName("name")
-                               var name: String,
-                               @SerializedName("full_name")
-                               var fullName: String,
-                               @SerializedName("description")
-                               var description: String,
-                               @SerializedName("owner")
-                               @Embedded(prefix = "owner_")
-                               var owner: Owner?,
-                               @SerializedName("stargazers_count")
-                               var stars: Int) {
-    constructor() : this(0, "", "", "", Owner("", ""), 0)
+data class Repo @Ignore constructor(
+        var id: Int = 0,
+        @SerializedName("name")
+        var name: String? = "",
+        @SerializedName("full_name")
+        var fullName: String? = "",
+        @SerializedName("description")
+        var description: String? = "",
+        @SerializedName("owner")
+        @Embedded(prefix = "owner_")
+        var owner: Owner? = null,
+        @SerializedName("stargazers_count")
+        var stars: Int = 0
+) {
+    constructor() : this(0)
 
     companion object {
         val UNKNOWN_ID = -1
     }
-
-
 }

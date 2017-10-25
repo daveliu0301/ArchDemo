@@ -19,3 +19,14 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#okio
+-dontwarn okio.**
+
+#dagger
+-dontwarn com.google.errorprone.annotations.**
+
+#retrofit
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement

@@ -2,19 +2,15 @@ package com.example.liudong.archdemo.db
 
 import android.arch.persistence.room.TypeConverter
 import android.arch.persistence.room.util.StringUtil
-import java.util.*
 
 class GithubTypeConverters {
     @TypeConverter
-    fun stringToIntList(data: String?): MutableList<Int>? {
-        if (data == null) {
-            return Collections.emptyList()
-        }
-        return StringUtil.splitToIntList(data)
+    fun stringToIntList(data: String?): List<Int> {
+        return StringUtil.splitToIntList(data) ?: emptyList()
     }
 
     @TypeConverter
-    fun intListToString(ints: List<Int>): String? {
-        return StringUtil.joinIntoString(ints)
+    fun intListToString(ints: List<Int>): String {
+        return StringUtil.joinIntoString(ints) ?: ""
     }
 }

@@ -51,9 +51,8 @@ abstract class RepoDao {
 
     fun loadOrdered(repoIds: List<Int>): LiveData<List<Repo>> {
         val order = SparseIntArray()
-        var index = 0
-        for (repoId in repoIds) {
-            order.put(repoId, index++)
+        for ((index, repoId) in repoIds.withIndex()) {
+            order.put(repoId, index)
         }
         return Transformations.map(loadById(repoIds)) { repositories ->
             Collections.sort(repositories, { r1, r2 ->
@@ -69,5 +68,5 @@ abstract class RepoDao {
     protected abstract fun loadById(repoIds: List<Int>): LiveData<List<Repo>>
 
     @Query("SELECT * FROM RepoSearchResult WHERE query = :query")
-    abstract fun findSearchResult(query: String): RepoSearchResult
+    abstract fun findSearchResult(query: String): RepoSearchResult?
 }
